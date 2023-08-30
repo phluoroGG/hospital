@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Прейскурант услуг</title>
+</head>
+<body>
+{% include '_menu.html' %}
+<h1>Прейскурант услуг</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Стоимость</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for s in services %}
+        <tr>
+            <td>
+                {% if current_user and current_user.is_authenticated %}
+                    <a href="{{ url_for('edit_price_list', id=s.id) }}">{{ s.name }}</a>
+                {% else %}
+                    {{ s.name }}
+                {% endif %}
+            </td>
+            <td>
+                {{ s.cost }}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

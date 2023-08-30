@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование информации об отделении</title>
+</head>
+<body>
+{% include '_menu.html' %}
+<form method="post">
+    <table class="form">
+        <tr>
+            <th class="form">Заведующий</th>
+            <td class="form">
+                {{ form.doctor }}
+            </td>
+            <td class="form">
+                {{ form.doctor.errors if form.doctor.errors }}
+            </td>
+        </tr>
+        <tr>
+            <th class="form">Название</th>
+            <td class="form">{{ form.name }}</td>
+            <td class="form">
+                {{ form.name.errors if form.name.errors }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="form">
+                {{ form.button_save }}
+                {% if department.id %}
+                    {{ form.button_delete }}
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</form>
+{% if department.id %}
+    {% include '_month_statistics.html' %}
+    {% with id=department.id %}
+        {% include "_service_list.html" %}
+    {% endwith %}
+{% endif %}
+</body>
+</html>

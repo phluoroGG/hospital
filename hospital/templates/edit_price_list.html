@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование информации о прейскуранте услуг</title>
+</head>
+<body>
+{% include '_menu.html' %}
+<form method="post">
+    <table class="form">
+        <tr>
+            <th class="form">Название услуги</th>
+            <td class="form">{{ form.name }}</td>
+            <td class="form">
+                {{ form.name.errors if form.name.errors }}
+            </td>
+        </tr>
+        <tr>
+            <th class="form">Стоимость</th>
+            <td class="form">
+                {{ form.cost }}
+            </td>
+            <td class="form">
+                {{ form.cost.errors if form.cost.errors }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="form">
+                {{ form.button_save }}
+                {% if service.id %}
+                    {{ form.button_delete }}
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</form>
+{% if service.id %}
+    {% include '_month_statistics.html' %}
+    {% with id=service.id %}
+        {% include "_service_list.html" %}
+    {% endwith %}
+{% endif %}
+</body>
+</html>

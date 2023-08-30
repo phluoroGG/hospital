@@ -1,0 +1,35 @@
+a:link, a:visited {
+    color: blue;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover, a:active {
+    color: blue;
+    background-color: transparent;
+    text-decoration: underline;
+}
+table, th, td {
+    border: 1px solid;
+    border-color: #aaaaaa;
+    padding: 5px;
+}
+table {
+    border-collapse: collapse;
+}
+.form {
+    border: 0px;
+    border-color: white;
+}
+.links {
+    margin: 5px 0 5px 0;
+}
+.link-pages {
+    padding: 3px;
+    font-size: 20px;
+}
+li {
+    padding: 5px;
+}
+html {
+    font-size: 18px;
+}

@@ -1,0 +1,77 @@
+<h3>Оказанные услуги</h3>
+<div>
+    <form method="post">
+        <label for="items">Услуг на странице</label>
+        <select id="items" name="items">
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="500">500</option>
+        </select>
+        <input type="submit" value="Выбрать">
+    </form>
+</div>
+<p><span class="link-pages">{{ page.first }} - {{ page.last }} из {{ page.total }}<br></span></p>
+<div class="links">
+    {% for page1 in page.iter_pages() %}
+        {% if page1 %}
+            {% if page1 != page.page1 %}
+                <span class="link-pages"><a href="{{ url_for(request.endpoint, id=id, page=page1) }}">{{ page1 }}</a></span>
+            {% else %}
+                <strong>{{ page1 }}</strong>
+            {% endif %}
+        {% else %}
+            <span class="link-pages">…</span>
+        {% endif %}
+    {% endfor %}
+</div>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Номер услуги</th>
+            <th>Пациент</th>
+            <th>Доктор</th>
+            <th>Услуга</th>
+            <th>Дата проведения</th>
+            <th>Стоимость</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for s in page %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('edit_service', id=s.id) }}">{{ s.id }}</a>
+                </td>
+                {% if s.patient_id %}
+                    <td>
+                        <a href="{{ url_for('edit_patient', id=s.patient_id) }}">{{ s.patient.name }}</a>
+                    </td>
+                {% else %}
+                    <td> -</td>
+                {% endif %}
+                {% if s.doctor_id %}
+                    <td>
+                        <a href="{{ url_for('edit_doctor', id=s.doctor_id) }}">{{ s.doctor.name }}</a>
+                    </td>
+                {% else %}
+                    <td> -</td>
+                {% endif %}
+                {% if s.service_id %}
+                    <td>
+                        <a href="{{ url_for('edit_price_list', id=s.service_id) }}">{{ s.service.name }}</a>
+                    </td>
+                {% else %}
+                    <td> -</td>
+                {% endif %}
+                    <td>
+                        {{ s.service_date }}
+                    </td>
+                    <td>
+                        {{ s.cost }}
+                    </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

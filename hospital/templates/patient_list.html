@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Список пациентов</title>
+</head>
+<body>
+{% include '_menu.html' %}
+<h1>Список пациентов</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ФИО</th>
+        <th>Дата рождения</th>
+        <th>Номер телефона</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for p in patients %}
+        <tr>
+            <td>
+                <a href="{{ url_for('edit_patient', id=p.id) }}">{{ p.name }}</a>
+            </td>
+            <td>
+                {{ p.birthday }}
+            </td>
+            <td>
+                {{ p.phone_number }}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

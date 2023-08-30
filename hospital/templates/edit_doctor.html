@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование информации о докторе</title>
+</head>
+<body>
+{% include '_menu.html' %}
+<form method="post">
+    <table class="form">
+        <tr>
+            <th class="form">Отделение</th>
+            <td class="form">
+                {{ form.department }}
+            </td>
+            <td class="form">
+                {{ form.department.errors if form.department.errors }}
+            </td>
+        </tr>
+        <tr>
+            <th class="form">ФИО</th>
+            <td class="form">{{ form.name }}</td>
+            <td class="form">
+                {{ form.name.errors if form.name.errors }}
+            </td>
+        </tr>
+        <tr>
+            <th class="form">Зарплата</th>
+            <td class="form">
+                {{ form.salary }}
+            </td>
+            <td class="form">
+                {{ form.salary.errors if form.salary.errors }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="form">
+                {{ form.button_save }}
+                {% if doctor.id %}
+                    {{ form.button_delete }}
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</form>
+{% if doctor.id %}
+    {% include '_month_statistics.html' %}
+    {% with id=doctor.id %}
+        {% include "_service_list.html" %}
+    {% endwith %}
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Платная поликлиника</title>
+</head>
+<body>
+{% include '_menu.html' %}
+<h1>Платная поликлиника</h1>
+<h2><a href="{{ url_for('price_list') }}">Прейскурант услуг</a></h2>
+<h2><a href="{{ url_for('department_list') }}">Список отделений</a></h2>
+{% if current_user and current_user.is_authenticated %}
+    <h2><a href="{{ url_for('patient_list') }}">Список пациентов</a></h2>
+    <h2><a href="{{ url_for('service_list') }}">Список оказанных услуг</a></h2>
+{% endif %}
+</body>
+</html>

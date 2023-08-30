@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Список оказанных услуг</title>
+</head>
+<body>
+{% include '_menu.html' %}
+<h1>Список оказанных услуг</h1>
+{% include '_month_statistics.html' %}
+{% with id=0 %}
+    {% include "_service_list.html" %}
+{% endwith %}
+</body>
+</html>

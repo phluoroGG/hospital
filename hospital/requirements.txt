@@ -1,0 +1,9 @@
+Jinja2
+SQLAlchemy
+Flask
+Flask-Login
+Flask-SQLAlchemy
+wtforms
+wtforms-alchemy
+mysql
+mysql-connector-python
